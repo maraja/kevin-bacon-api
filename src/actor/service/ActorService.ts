@@ -1,7 +1,5 @@
 import { ActorModel } from "../model/ActorModel";
-
 import { DegreesOfSeparationDto } from "../dto/ActorDto";
-
 import { actorsStub } from "./ActorData";
 
 export class ActorService {
@@ -39,7 +37,6 @@ export class ActorService {
 
     public static async getActorById(actorId: string): Promise<ActorModel> {
         try {
-            // const resp = await ActorModel.findByPk(actorId);
             const actors = await actorsStub();
             const actor = actors.find((a) => a.id === parseInt(actorId));
 
@@ -59,7 +56,6 @@ export class ActorService {
         maxDepth = 3
     ): Promise<number> {
         try {
-            // const resp = await ActorModel.findByPk(actorId);
             const actorOne = await this.getActorByName(twoActors.actorOneName);
 
             if (actorOne) {
@@ -78,9 +74,7 @@ export class ActorService {
                         queue.push(null);
                     } else if (s === twoActors.actorTwoName) return level;
                     else {
-                        // console.log(s, level);
                         const currActor = await this.getActorByName(s);
-                        // console.log(currActor);
                         if (currActor) {
                             currActor.connectedActors.forEach((n) => {
                                 if (!visited.includes(n)) {

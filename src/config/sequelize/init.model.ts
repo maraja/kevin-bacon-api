@@ -3,9 +3,9 @@ import { MovieModel } from "../../movie/model/MovieModel";
 const { DataTypes } = require("sequelize");
 
 export function InitModel(sequelize) {
-    ActorModel.associate = (models) => {
-        ActorModel.hasMany(ActorModel, { as: "connectedActors" });
-    };
+    // ActorModel.associate = (models) => {
+    //     ActorModel.hasMany(ActorModel, { as: "connectedActors" });
+    // };
     ActorModel.init(
         {
             id: {

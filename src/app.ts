@@ -9,7 +9,6 @@ import { ValidateError } from "tsoa";
 import { ConfigSequelize } from "./config/sequelize/config.sequelize";
 
 const express = require("express");
-// const sls = require('serverless-http');
 const app = express(express.json());
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -50,7 +49,5 @@ app.use(function errorHandler(
 const port = process.env.PORT || 3000;
 
 app.listen(port, () =>
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Kevin Bacon API running on http://localhost:${port}`)
 );
-
-// module.exports.handler = sls(app);
