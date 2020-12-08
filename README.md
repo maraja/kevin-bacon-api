@@ -41,4 +41,17 @@ The TSOA framework provides self-documentation using the OpenAPI 3.0 specificati
 -   The original dataset contains over 200,000 actors, which will require a sufficient amount of database storage and a well thought out ERD.
 -   When running the `degrees-of-separation` call, the maximum recursion depth is set to 3 (i.e., it will do a BFS on 3 layers of actors). This is to ensure requests don't time out.
 -   This implementation of degrees of separation is very inefficient. Consider only looking for connected actors with 1-2 degrees of separation for demonstration purposes.
--   To run the degrees-of-separation, you don't need to migrate any data (the flat file is included as a json in the data folder)
+-   To run the degrees-of-separation, you don't need to migrate any data (the flat file is included as a json in the data folder). Start the server and send a POST request to the following API endpoint: `localhost:3000/api/actor/degrees-of-separation` with the following example body:
+
+```
+    {
+        "actorOneName": "Tom Hanks",
+        "actorTwoName": "Kevin Bacon"
+    }
+```
+
+## Considerations:
+
+-   This project is meant to run locally, there are no inclusions of CI/CD pipelines and infrastructure deployment.
+-   The database model is unfinished. Due to the time limitations, Data preprocessing was done on the original dataset and the resulting formatted data (i.e., actors and connected actors) are used for the purposes of this demonstration.
+-   All pre-processing and exploration on the data was done in Python and can be found in a jupyter notebook in the `data` folder called `Data Exploration.ipynb`
