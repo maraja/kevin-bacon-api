@@ -116,7 +116,7 @@ dist
 # End of https://www.toptal.com/developers/gitignore/api/node
 
 # exclude everything
-data/*
+# data/*
 
 # exception to the rule
-!data/.gitkeep 
+# !data/.gitkeep 

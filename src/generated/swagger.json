@@ -1,0 +1,445 @@
+{
+	"basePath": "/api",
+	"consumes": [
+		"application/json"
+	],
+	"definitions": {
+		"ActorDto": {
+			"properties": {
+				"id": {
+					"type": "number",
+					"format": "double",
+					"x-nullable": true
+				},
+				"name": {
+					"type": "string"
+				},
+				"connectedActors": {
+					"items": {
+						"type": "string"
+					},
+					"type": "array",
+					"x-nullable": true
+				}
+			},
+			"required": [
+				"name"
+			],
+			"type": "object",
+			"additionalProperties": true
+		},
+		"DegreesOfSeparationDto": {
+			"properties": {
+				"actorOneName": {
+					"type": "string"
+				},
+				"actorTwoName": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"actorOneName",
+				"actorTwoName"
+			],
+			"type": "object",
+			"additionalProperties": true
+		},
+		"MovieDto": {
+			"properties": {
+				"id": {
+					"type": "number",
+					"format": "double",
+					"x-nullable": true
+				},
+				"title": {
+					"type": "string"
+				},
+				"actors": {
+					"items": {
+						"type": "string"
+					},
+					"type": "array"
+				}
+			},
+			"required": [
+				"title",
+				"actors"
+			],
+			"type": "object",
+			"additionalProperties": true
+		}
+	},
+	"info": {
+		"title": "Kevin Bacon API",
+		"version": "1.0.0",
+		"description": "This API allows a user to find the degrees of separation between two actors",
+		"license": {
+			"name": "MIT"
+		}
+	},
+	"paths": {
+		"/actor/{id}": {
+			"get": {
+				"operationId": "GetActor",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/ActorDto"
+						}
+					}
+				},
+				"tags": [
+					"Actor"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteActor",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"properties": {
+								"status": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"status"
+							],
+							"type": "object"
+						}
+					}
+				},
+				"tags": [
+					"Actor"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					}
+				]
+			}
+		},
+		"/actor": {
+			"get": {
+				"operationId": "ListActors",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"items": {
+								"$ref": "#/definitions/ActorDto"
+							},
+							"type": "array"
+						}
+					}
+				},
+				"tags": [
+					"Actor"
+				],
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "SaveActor",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"properties": {
+								"status": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"status"
+							],
+							"type": "object"
+						}
+					}
+				},
+				"tags": [
+					"Actor"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "actor",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/ActorDto"
+						}
+					}
+				]
+			},
+			"put": {
+				"operationId": "UpdateActor",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"properties": {
+								"status": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"status"
+							],
+							"type": "object"
+						}
+					}
+				},
+				"tags": [
+					"Actor"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "actor",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/ActorDto"
+						}
+					}
+				]
+			}
+		},
+		"/actor/degrees-of-separation": {
+			"post": {
+				"operationId": "DegreesOfSeparation",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"properties": {
+								"message": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"message"
+							],
+							"type": "object"
+						}
+					}
+				},
+				"tags": [
+					"Actor"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "actors",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/DegreesOfSeparationDto"
+						}
+					}
+				]
+			}
+		},
+		"/movie/{id}": {
+			"get": {
+				"operationId": "GetMovie",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/MovieDto"
+						}
+					}
+				},
+				"tags": [
+					"Movie"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteMovie",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"properties": {
+								"status": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"status"
+							],
+							"type": "object"
+						}
+					}
+				},
+				"tags": [
+					"Movie"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					}
+				]
+			}
+		},
+		"/movie": {
+			"get": {
+				"operationId": "ListMovie",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"items": {
+								"$ref": "#/definitions/MovieDto"
+							},
+							"type": "array"
+						}
+					}
+				},
+				"tags": [
+					"Movie"
+				],
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "SaveMovie",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"properties": {
+								"status": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"status"
+							],
+							"type": "object"
+						}
+					}
+				},
+				"tags": [
+					"Movie"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "movie",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/MovieDto"
+						}
+					}
+				]
+			},
+			"put": {
+				"operationId": "UpdateMovie",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"properties": {
+								"status": {
+									"type": "string"
+								}
+							},
+							"required": [
+								"status"
+							],
+							"type": "object"
+						}
+					}
+				},
+				"tags": [
+					"Movie"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "movie",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/MovieDto"
+						}
+					}
+				]
+			}
+		}
+	},
+	"produces": [
+		"application/json"
+	],
+	"swagger": "2.0",
+	"securityDefinitions": {},
+	"host": "localhost:3000",
+	"schemes": [
+		"http"
+	]
+}

@@ -1,53 +1,44 @@
-# Express Serverless Project
+# Kevin Bacon API
 
 This is a base project for an Express Serverless backend application, using AWS as Cloud Provider.
 
 By running this project you will have a CRUD application by Express as NodeJs web application framework.
 It is written in TypeScript to obtain all the advantages with respect to vanilla JavaScript.
 
-In this project we will use ```tsoa``` to register our Express routes and to obtain validation without using boilerplate code.
+In this project I use `tsoa` to register our Express routes and to obtain validation without using boilerplate code.
 
 As all good CRUD services, we need a data source to manage our data.
 To manage database object we are going to use Sequelize as ORM.
 
 ## Project setup
 
-Run ```npm install``` and install all the necessary dependencies.
-
-To test and deploy the application on your AWS account you should install Serverless framework by running:
-
-    npm install -g serverless
+Run `npm install -g yarn` followed by `yarn` and install all the necessary dependencies.
 
 ## Local testing
+
 Before running locally our functions, we need to setup the database.
 You can run the docker-compose file to create a container with a Postgres database.
 
-    docker-compose up
+`docker-compose up`
 
 When the container is up, run the migration file to correctly initialize the database:
 
-    npm run migrate-db-local
-    
-Since we can't directly test Lambda functions on our local machine, we can use the ```serverless-offline``` plugin to achieve this goal.
-Run the following command to emulate locally AWS Lambda and API Gateway:
+`yarn migrate-db-local`
 
-    npm run start
-    
-Keep in mind that all the API has `/{NODE_ENV}/api` as root prefix
+You can then begin running the API server with the following comand:
 
-## Serverless file
+`yarn dev`
 
-[Serverless framework](https://github.com/serverless/serverless) comes in our help to easily manage our cloud infrastructure.
+Note: If you plan on making changes to the routes, you must run `yarn generate-routes` before starting the server again. TSOA needs to regenerate all the routes in this situation. The project comes with the pre-generated routes, but don't forget to do this before pushing your code up.
 
-Thanks to the configuration defined in the serverless.yml file, we are going to create an API Gateway with single resource which proxies the API calls to the proper Express route.
+## Documentation
 
+The TSOA framework provides self-documentation using the OpenAPI 3.0 specification. To generate new documentation, run the `yarn generate-swagger` and yuou will find the resulting json spec in the `src/generated/` folder.
 
-## AWS configuration
+## Notes:
 
-Please be sure to have installed AWS CLI and configured it with your credentials.
-
-This example project uses Aurora Serverless as RDBMS and a Secret Manager where credentials are stored.
-
-To create/update the Serverless infrastructure on your account, run the command:
-
-    npm run deploy-dev
+-   This iteration of the API is using a flat json file with limited actors.
+-   The original dataset contains over 200,000 actors, which will require a sufficient amount of database storage and a well thought out ERD.
+-   When running the `degrees-of-separation` call, the maximum recursion depth is set to 3 (i.e., it will do a BFS on 3 layers of actors). This is to ensure requests don't time out.
+-   This implementation of degrees of separation is very inefficient. Consider only looking for connected actors with 1-2 degrees of separation for demonstration purposes.
+-   To run the degrees-of-separation, you don't need to migrate any data (the flat file is included as a json in the data folder)
