@@ -55,3 +55,12 @@ The TSOA framework provides self-documentation using the OpenAPI 3.0 specificati
 -   This project is meant to run locally, there are no inclusions of CI/CD pipelines and infrastructure deployment.
 -   The database model is unfinished. Due to the time limitations, Data preprocessing was done on the original dataset and the resulting formatted data (i.e., actors and connected actors) are used for the purposes of this demonstration.
 -   All pre-processing and exploration on the data was done in Python and can be found in a jupyter notebook in the `data` folder called `Data Exploration.ipynb`
+-   No tests have been added to this iteration of the project. TypeScript was selected to provide a level of static typechecking in an effort to alleviate the need for tests curently.
+
+## Future Implementations
+
+-   The addition of a route to host documentation would be great. This can be added pretty easily by serving the file through the Swagger UI utility and telling express to point the path in the right direction.
+-   A more thought out ERD and relationship structure for the database is critical for data storage. As it currently sits, this solution definitely will not be able to scale.
+-   More complex code is not commented. For example, the code for the BFS is uncommented to leave room for explanation. The rest of the code is quite self-documenting due to TSOA and TypeScript.
+-   There is no authentation added here. In the future, this would be a necessity.
+-   Deployment of this solution to AWS through a serverless lambda function. Database choice would be aurora serverless. Unfortunately, it's not available in ca-central-1 currently.
