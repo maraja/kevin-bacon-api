@@ -18,7 +18,7 @@ export class MovieService {
 
                 await MovieModel.create({
                     title: movie.title,
-                    actors: actors,
+                    actors,
                 });
             });
         } catch (error) {

@@ -1,21 +1,19 @@
 {
-  "swagger": {
-    "name": "Express serverless swagger API",
-    "description": "Express serverless API definitions",
-    "version": "1.0.0",
-    "schemes": [ "http" ],
-    "outputDirectory": "./src/generated",
-    "entryFile": "./src/app.ts",
-    "host": "localhost:3000",
-    "controllerPathGlobs": [
-      "./src/**/*Controller.ts"
-    ],
-    "basePath": "/api"
-  },
-  "routes": {
-    "basePath": "/api",
-    "entryFile": "./src/app.ts",
-    "routesDir": "./src/generated",
-    "middleware": "express"
-  }
+    "swagger": {
+        "name": "Kevin Bacon API",
+        "description": "This API allows a user to find the degrees of separation between two actors",
+        "version": "1.0.0",
+        "schemes": ["http"],
+        "outputDirectory": "./src/generated",
+        "entryFile": "./src/app.ts",
+        "host": "localhost:3000",
+        "controllerPathGlobs": ["./src/**/*Controller.ts"],
+        "basePath": "/api"
+    },
+    "routes": {
+        "basePath": "/api",
+        "entryFile": "./src/app.ts",
+        "routesDir": "./src/generated",
+        "middleware": "express"
+    }
 }
