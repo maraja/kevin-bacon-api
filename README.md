@@ -16,6 +16,10 @@ To manage database object we are going to use Sequelize as ORM.
 
 Run `npm install -g yarn` followed by `yarn` and install all the necessary dependencies.
 
+This project uses Sequelize as an ORM to interact with the local database. Please install the cli utility globally using the following command:
+
+`npm install -g sequelize-cli`
+
 ## Local testing
 
 Before running locally our functions, we need to setup the database.
