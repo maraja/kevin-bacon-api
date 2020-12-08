@@ -5,12 +5,16 @@ module.exports = {
             id: {
                 type: Sequelize.DataTypes.INTEGER,
                 primaryKey: true,
+                autoIncrement: true,
             },
             name: Sequelize.DataTypes.TEXT,
+            connectedActors: Sequelize.DataTypes.ARRAY(
+                Sequelize.DataTypes.TEXT
+            ),
         });
     },
 
     down: async (queryInterface) => {
-        await queryInterface.dropTable("name");
+        await queryInterface.dropTable("actor");
     },
 };

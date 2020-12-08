@@ -1,5 +1,10 @@
 export interface ActorDto {
-    id: number;
+    id?: number;
     name: string;
-    connectedActors: string[];
+    connectedActors?: string[];
+}
+
+export interface DegreesOfSeparationDto {
+    actorOneName: string;
+    actorTwoName: string;
 }

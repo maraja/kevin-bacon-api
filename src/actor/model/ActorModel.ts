@@ -1,7 +1,9 @@
+import { Sequelize } from "sequelize/types";
+
 const { Model } = require("sequelize");
 
 export class ActorModel extends Model {
-    id: number;
+    id?: number;
     name: string;
-    connectedActors: string[];
+    connectedActors?: string[];
 }

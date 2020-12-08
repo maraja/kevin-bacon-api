@@ -9,7 +9,7 @@ import {
     Route,
     Tags,
 } from "tsoa";
-import { ActorDto } from "../dto/ActorDto";
+import { ActorDto, DegreesOfSeparationDto } from "../dto/ActorDto";
 import { ActorService } from "../service/ActorService";
 import { ActorConverter } from "../converter/ActorConverter";
 
@@ -33,6 +33,19 @@ export class ActorController extends Controller {
         return {
             status: "Actor inserted",
         };
+    }
+
+    @Post("degrees-of-separation")
+    public async degreesOfSeparation(@Body() actors: DegreesOfSeparationDto) {
+        const degree = await ActorService.degreesOfSeparation(actors);
+
+        if (degree === -1)
+            return { message: "No route could be found with maximum depth." };
+        else {
+            return {
+                message: `Route found with degree ${degree}`,
+            };
+        }
     }
 
     @Put("")

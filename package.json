@@ -9,12 +9,9 @@
         "build": "tsc",
         "dev": "cross-env isLocal=true NODE_ENV=dev concurrently \"nodemon\" \"nodemon -x tsoa spec-and-routes\"",
         "prebuild": "npm run generate-routes && tslint -c tslint.json -p tsconfig.json --fix && rimraf dist/",
-        "prestart": "npm install && npm run build",
-        "start": "cross-env isLocal=true NODE_ENV=dev node dist/app.js",
-        "pre-deploy": "rm -rf node_modules .serverless && npm install --production && npm run build && ./prepare-layer.sh",
-        "deploy-dev": "npm run pre-deploy && NODE_ENV=dev sls deploy",
-        "migrate-db-local": "cross-env NODE_ENV=local ./node_modules/sequelize-cli/lib/sequelize db:migrate",
-        "migrate-db-dev": "cross-env NODE_ENV=dev ./node_modules/sequelize-cli/lib/sequelize db:migrate"
+        "migrate-db-local": "cross-env NODE_ENV=local sequelize db:migrate",
+        "migrate:undo-db-local": "cross-env NODE_ENV=local sequelize db:migrate:undo",
+        "seed": "cross-env NODE_ENV=local sequelize db:seed:all"
     },
     "author": "Amit Maraj",
     "license": "MIT",
@@ -25,6 +22,7 @@
         "body-parser": "^1.19.0",
         "cross-env": "^7.0.3",
         "express": "~4.17.1",
+        "node-pickle": "^0.0.2",
         "pg": "^8.3.0",
         "rimraf": "^3.0.2",
         "sequelize": "~6.3.0",
