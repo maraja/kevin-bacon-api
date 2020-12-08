@@ -1,3 +1,5 @@
+![Kevin Bacon API Image](./images/ApiBanner.PNG)
+
 # Kevin Bacon API
 
 This is a base project for an Express Serverless backend application, using AWS as Cloud Provider.

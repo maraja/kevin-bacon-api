@@ -72,10 +72,7 @@
 	"info": {
 		"title": "Kevin Bacon API",
 		"version": "1.0.0",
-		"description": "This API allows a user to find the degrees of separation between two actors",
-		"license": {
-			"name": "MIT"
-		}
+		"description": "This API allows a user to find the degrees of separation between two actors"
 	},
 	"paths": {
 		"/actor/{id}": {
